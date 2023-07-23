@@ -7,7 +7,7 @@ namespace movieLibrary.Entities.Configurations
     {
         public void Configure(EntityTypeBuilder<Actor> builder)
         {
-            builder.HasKey(a => a.Id_actor);
+            builder.HasKey(a => a.Idactor);
             builder.Property(a => a.Fortune).HasPrecision(18, 2);
             builder.Property(a => a.Birthdate).HasColumnType("date");  
         }

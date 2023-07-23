@@ -10,6 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer("name=DefaultConnection"));
+builder.Services.AddAutoMapper(typeof(Program));
 
 var app = builder.Build();
 

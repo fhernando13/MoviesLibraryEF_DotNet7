@@ -7,7 +7,7 @@ namespace movieLibrary.Entities.Configurations
     {
          public void Configure(EntityTypeBuilder<Gender> builder)
         {
-            builder.HasKey(g => g.Id_gender);
+            builder.HasKey(g => g.Idgender);
         }
     }
 }

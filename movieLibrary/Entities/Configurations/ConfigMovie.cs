@@ -7,7 +7,7 @@ namespace movieLibrary.Entities.Configurations
     {
        public void Configure(EntityTypeBuilder<Movie> builder)
         {
-            builder.HasKey(m => m.Id_movie);
+            builder.HasKey(m => m.Idmovie);
             builder.Property(m => m.Daterelease).HasColumnType("date");
 
         } 

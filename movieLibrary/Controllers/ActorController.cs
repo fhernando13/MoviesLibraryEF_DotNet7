@@ -6,35 +6,36 @@ using movieLibrary.Entities;
 namespace movieLibrary.Controllers
 {
     [ApiController]
-    [Route("api/genders")]
-    public class GenderController: ControllerBase
+    [Route("api/actors")]
+    public class ActorController: ControllerBase
     {
         private readonly AppDbContext context;
         private readonly IMapper mapper;
-        public GenderController(AppDbContext context, IMapper mapper)
+        public ActorController(AppDbContext context, IMapper mapper)
         {
             this.context = context;
             this.mapper = mapper;
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post(GenderCreateDto genderCreateDto)
+        public async Task<ActionResult> Post(ActorCreateDto actorCreateDto)
         {
-            var gender = mapper.Map<Gender>(genderCreateDto);
+            var actor = mapper.Map<Actor>(actorCreateDto);
 
-            context.Add(gender);
+            context.Add(actor);
             await context.SaveChangesAsync();
             return Ok();
         }
 
         [HttpPost("several")]
-        public async Task<ActionResult> Post(GenderCreateDto[] genderCreateDto)
+        public async Task<ActionResult> Post(ActorCreateDto[] actorCreateDto)
         {
-            var genders = mapper.Map<Gender[]>(genderCreateDto);
-            context.AddRange(genders);
+            var actors = mapper.Map<Actor[]>(actorCreateDto);
+            context.AddRange(actors);
             await context.SaveChangesAsync();
             return Ok();
         }
 
+        
     }
 }

@@ -24,26 +24,26 @@ namespace movieLibrary.Migrations
 
             modelBuilder.Entity("GenderMovie", b =>
                 {
-                    b.Property<int>("GendersId_gender")
+                    b.Property<int>("GendersIdgender")
                         .HasColumnType("int");
 
-                    b.Property<int>("MoviesId_movie")
+                    b.Property<int>("MoviesIdmovie")
                         .HasColumnType("int");
 
-                    b.HasKey("GendersId_gender", "MoviesId_movie");
+                    b.HasKey("GendersIdgender", "MoviesIdmovie");
 
-                    b.HasIndex("MoviesId_movie");
+                    b.HasIndex("MoviesIdmovie");
 
                     b.ToTable("GenderMovie");
                 });
 
             modelBuilder.Entity("movieLibrary.Entities.Actor", b =>
                 {
-                    b.Property<int>("Id_actor")
+                    b.Property<int>("Idactor")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_actor"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Idactor"));
 
                     b.Property<DateTime>("Birthdate")
                         .HasColumnType("date");
@@ -57,64 +57,61 @@ namespace movieLibrary.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("Id_actor");
+                    b.HasKey("Idactor");
 
                     b.ToTable("Actors");
                 });
 
             modelBuilder.Entity("movieLibrary.Entities.Comment", b =>
                 {
-                    b.Property<int>("Id_comment")
+                    b.Property<int>("Idcomment")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_comment"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Idcomment"));
 
                     b.Property<string>("Comments")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("MovieId_movie")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Movie_ID")
+                    b.Property<int>("Movieid")
                         .HasColumnType("int");
 
                     b.Property<bool>("Recommend")
                         .HasColumnType("bit");
 
-                    b.HasKey("Id_comment");
+                    b.HasKey("Idcomment");
 
-                    b.HasIndex("MovieId_movie");
+                    b.HasIndex("Movieid");
 
                     b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("movieLibrary.Entities.Gender", b =>
                 {
-                    b.Property<int>("Id_gender")
+                    b.Property<int>("Idgender")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_gender"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Idgender"));
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("Id_gender");
+                    b.HasKey("Idgender");
 
                     b.ToTable("Genders");
                 });
 
             modelBuilder.Entity("movieLibrary.Entities.Movie", b =>
                 {
-                    b.Property<int>("Id_movie")
+                    b.Property<int>("Idmovie")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_movie"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Idmovie"));
 
                     b.Property<DateTime>("Daterelease")
                         .HasColumnType("date");
@@ -127,7 +124,7 @@ namespace movieLibrary.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("Id_movie");
+                    b.HasKey("Idmovie");
 
                     b.ToTable("Movies");
                 });
@@ -159,13 +156,13 @@ namespace movieLibrary.Migrations
                 {
                     b.HasOne("movieLibrary.Entities.Gender", null)
                         .WithMany()
-                        .HasForeignKey("GendersId_gender")
+                        .HasForeignKey("GendersIdgender")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("movieLibrary.Entities.Movie", null)
                         .WithMany()
-                        .HasForeignKey("MoviesId_movie")
+                        .HasForeignKey("MoviesIdmovie")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -174,7 +171,7 @@ namespace movieLibrary.Migrations
                 {
                     b.HasOne("movieLibrary.Entities.Movie", "Movie")
                         .WithMany("Commentss")
-                        .HasForeignKey("MovieId_movie")
+                        .HasForeignKey("Movieid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

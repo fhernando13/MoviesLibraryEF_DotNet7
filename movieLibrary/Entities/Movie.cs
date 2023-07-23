@@ -3,7 +3,7 @@ namespace movieLibrary.Entities
 {
     public class Movie
     {
-        public int Id_movie { get; set; }
+        public int Idmovie { get; set; }
         public string Title { get; set; } = null!;
         public  bool Oncinema { get; set; }
         public DateTime Daterelease { get; set; }

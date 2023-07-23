@@ -7,7 +7,7 @@ namespace movieLibrary.Entities.Configurations
     {
         public void Configure(EntityTypeBuilder<Comment> builder)
         {
-            builder.HasKey(c => c.Id_comment); 
+            builder.HasKey(c => c.Idcomment); 
         }
     }
 }
