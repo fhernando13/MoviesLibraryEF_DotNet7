@@ -18,7 +18,7 @@ namespace movieLibrary.Controllers
             this.mapper = mapper;
         }
         
-        [HttpPost]
+        [HttpPost("insertone")]
         public async Task<ActionResult> Post(MovieCreateDto movieCreateDto)
         {
             var movie = mapper.Map<Movie>(movieCreateDto);
@@ -42,6 +42,47 @@ namespace movieLibrary.Controllers
             await context.SaveChangesAsync();
             return Ok();
            
+        }
+
+        //Get all movies 
+        [HttpGet("getall")]
+        public async Task<ActionResult<IEnumerable<Movie>>> Get() 
+        {
+            return await context.Movies.ToListAsync();
+        }
+
+        //Get movie by name
+        [HttpGet("getbytitle")]
+        public async Task<ActionResult<IEnumerable<Movie>>> GetV2(string title) 
+        {        
+            return await context.Movies.Where(n => n.Title.Contains(title)).ToListAsync();
+        }
+        
+        //Get movie by id
+         [HttpGet("getone/{id:int}")]
+        public async Task<ActionResult<Movie>> Get(int id) 
+        {        
+            var movie = await context.Movies.FindAsync(id);
+
+            if(movie is null)
+            {
+                return NotFound();
+            }
+            return movie;
+        }
+
+        //Delete gender by id
+        [HttpDelete("delete/{id:int}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var deleteMovie = await context.Movies.Where(g => g.Idmovie == id).ExecuteDeleteAsync();
+
+            if (deleteMovie == 0)
+            {
+                return NotFound();
+            }
+
+            return NoContent();
         }
 
     }

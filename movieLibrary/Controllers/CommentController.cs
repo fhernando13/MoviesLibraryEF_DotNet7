@@ -18,7 +18,8 @@ namespace movieLibrary.Controllers
             this.mapper = mapper;
         }
 
-        [HttpPost]
+        //Insert one comment
+        [HttpPost("insertcomment")]
         public async Task<ActionResult> Post(int movieid, CommentCreateDto commentCreateDto)
         {
             var comment = mapper.Map<Comment>(commentCreateDto);
@@ -26,6 +27,40 @@ namespace movieLibrary.Controllers
             context.Add(comment);
             await context.SaveChangesAsync();
             return Ok();
+        }
+
+        //Get all comments 
+        [HttpGet("getall")]
+        public async Task<ActionResult<IEnumerable<Comment>>> Get() 
+        {
+            return await context.Comments.ToListAsync();
+        }
+
+        //Get comment by id
+         [HttpGet("getone/{id:int}")]
+        public async Task<ActionResult<Comment>> Get(int id) 
+        {        
+            var comment = await context.Comments.FindAsync(id);
+
+            if(comment is null)
+            {
+                return NotFound();
+            }
+            return comment;
+        }
+
+        //Delete comment by id
+        [HttpDelete("delete/{id:int}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var deleteComment = await context.Comments.Where(g => g.Idcomment == id).ExecuteDeleteAsync();
+
+            if (deleteComment == 0)
+            {
+                return NotFound();
+            }
+
+            return NoContent();
         }
         
     }
