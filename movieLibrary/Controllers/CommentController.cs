@@ -62,6 +62,17 @@ namespace movieLibrary.Controllers
 
             return NoContent();
         }
+
+        //Update actor
+        [HttpPut("update/{id:int}")]
+        public async Task<ActionResult> Put(int id, CommentCreateDto commentCreateDto)
+        {
+            var comment = mapper.Map<Comment>(commentCreateDto);
+            comment.Idcomment = id;
+            context.Update(comment);
+            await context.SaveChangesAsync();
+            return Ok();
+        }
         
     }
 }

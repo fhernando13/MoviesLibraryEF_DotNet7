@@ -73,6 +73,17 @@ namespace movieLibrary.Controllers
 
             return NoContent();
         }
+
+        //Update gender
+        [HttpPut("update/{id:int}")]
+        public async Task<ActionResult> Put(int id, GenderCreateDto genderCreateDto)
+        {
+            var gender = mapper.Map<Gender>(genderCreateDto);
+            gender.Idgender = id;
+            context.Update(gender);
+            await context.SaveChangesAsync();
+            return Ok();
+        }
     }
 
 }
