@@ -3,12 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using movieLibrary.DTO;
 using movieLibrary.Entities;
 using Microsoft.EntityFrameworkCore;
-using AutoMapper.QueryableExtensions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace movieLibrary.Controllers
 {
     [ApiController]
     [Route("api/genders")]
+    [Authorize]
     public class GenderController: ControllerBase
     {
         private readonly AppDbContext context;

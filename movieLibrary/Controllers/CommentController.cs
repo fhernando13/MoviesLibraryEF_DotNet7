@@ -3,11 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using movieLibrary.DTO;
 using movieLibrary.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace movieLibrary.Controllers
 {
     [ApiController]
     [Route("api/movies/{movieid:int}/comment")]
+    [Authorize]
     public class CommentController: ControllerBase
     {
         private readonly AppDbContext context;
