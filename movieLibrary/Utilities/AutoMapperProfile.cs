@@ -10,6 +10,7 @@ namespace movieLibrary.Utilities
         {
             CreateMap<GenderCreateDto, Gender>();
             CreateMap<ActorCreateDto, Actor>();
+            CreateMap<UserCreateDto, User>();
             CreateMap<MovieCreateDto, Movie>()
                 .ForMember(ent => ent.Genders, 
                 dto => dto.MapFrom(field => field.Genders.Select(Idgender => new Gender {Idgender = Idgender})));

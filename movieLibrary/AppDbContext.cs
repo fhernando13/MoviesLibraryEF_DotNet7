@@ -26,6 +26,7 @@ namespace movieLibrary
         public DbSet<Movie> Movies => Set<Movie>();
         public DbSet<Comment> Comments => Set<Comment>();
         public DbSet<MovieActor> MovieActors => Set<MovieActor>();
+        public DbSet<User> Users => Set<User>();
 
     }
 }
