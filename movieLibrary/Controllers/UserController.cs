@@ -3,13 +3,14 @@ using Microsoft.AspNetCore.Mvc;
 using movieLibrary.DTO;
 using movieLibrary.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authorization;
+using System.Security.Cryptography;
+using System.Text;
+
 
 namespace movieLibrary.Controllers
 {
     [ApiController]
     [Route("api/users")]
-    [Authorize]
     public class UserController: ControllerBase
     {
         private readonly AppDbContext context;
@@ -20,12 +21,31 @@ namespace movieLibrary.Controllers
             this.mapper = mapper;
         }
 
+        public static string EncrypPass(string str)
+        {
+            SHA256 sha256 = SHA256Managed.Create();
+            ASCIIEncoding encoding = new ASCIIEncoding();
+            byte[] stream = null;
+            StringBuilder sb = new StringBuilder();
+            stream = sha256.ComputeHash(encoding.GetBytes(str));
+            for (int i = 0; i < stream.Length; i++) sb.AppendFormat("{0:x2}", stream[i]);
+            return sb.ToString();
+        }
+
         //Insert one user
         [HttpPost("insertone")]
-        public async Task<ActionResult> Post(UserCreateDto userCreateDto)
+        public async Task<ActionResult> Post(User userCreateDto)
         {
-            var user = mapper.Map<User>(userCreateDto);
-
+            var user = new User()
+            {
+                Iduser = userCreateDto.Iduser,
+                Name = userCreateDto.Name,
+                Lastname = userCreateDto.Lastname,
+                Birthdate = userCreateDto.Birthdate,
+                Role = userCreateDto.Role,
+                Email = userCreateDto.Email,
+                Password = EncrypPass(userCreateDto.Password)
+            };            
             context.Add(user);
             await context.SaveChangesAsync();
             return Ok();
@@ -75,6 +95,6 @@ namespace movieLibrary.Controllers
             await context.SaveChangesAsync();
             return Ok();
         }
-        
+
     }
 }
