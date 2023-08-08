@@ -1,41 +1,41 @@
 
-<div class="container">
+<div class="container py-5">
   <div class="row">
-    <div class="col-4">
-      
-    </div>
-    <div class="col-4">
+    <div class="col-4"></div>
+
+    <div class="col-4" id="logo">
       <!-- center -->
-      <mat-card class="example-card">
-        <mat-card-header>
-          <mat-card-title>LOGIN</mat-card-title>
-        </mat-card-header>
+      <mat-card class="card-login">    
         <div id="logo">
-          <img mat-card-image src="./assets/dotnetAngular.png" alt="Logo" width="300" height="290" class="d-inline-block align-text-top">           
+          <img mat-card-image src="./assets/dotnetAngular.png" 
+              alt="Logo" 
+              width="300" 
+              height="290" 
+              class="d-inline-block align-text-top py-2">           
         </div>
         <mat-card-content>
           <!-- EMAIL -->
-          <mat-form-field>
+          <mat-form-field class="inputlogin">
             <mat-label>Enter your email</mat-label>
             <input type="text" matInput >
           </mat-form-field>
           <!-- PASSWORD -->
-          <mat-form-field>
+          <mat-form-field class="inputlogin">
             <mat-label>Enter your password</mat-label>
             <input type="password" matInput >
           </mat-form-field>
         </mat-card-content>
-        <mat-card-actions>
-          <div id="logo">
-            <button mat-raised-button color="primary">LOGGIN</button>
-          </div>
+        <mat-card-actions>          
+          <button mat-raised-button 
+                  color="primary" 
+                  class="buttonlogin"
+                  matTooltip="Click to into app"
+                  matTooltipClass="info-button-login">LOGGIN</button>                      
         </mat-card-actions>
       </mat-card>
     </div>
-    </div>
-    <div class="col-4">
-      
-    </div>
+
+    <div class="col-4"></div>
   </div>
   
 

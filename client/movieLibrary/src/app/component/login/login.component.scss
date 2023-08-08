@@ -1,3 +1,16 @@
-#logo{
+.card-login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.inputlogin{
+    text-align: center;
+    width: 320px;
+}
+.buttonlogin{
+    justify-content: center;
     text-align: center;
 }
+.info-button-login {
+    text-transform: uppercase;
+  }
