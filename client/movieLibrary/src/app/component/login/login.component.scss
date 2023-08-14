@@ -2,10 +2,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background: linear-gradient(to top, #9E280E, #000000 80% ) no-repeat;
+    margin-top: 50px;//margen superior
+    min-width: 320px;
+    max-width: 320px;
+}
+.form-login{
+    margin-top: 50px;
 }
 .inputlogin{
     text-align: center;
-    width: 320px;
+    width: 100%;
 }
 .buttonlogin{
     justify-content: center;

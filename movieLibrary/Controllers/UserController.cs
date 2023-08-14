@@ -1,10 +1,9 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using movieLibrary.DTO;
+using movieLibrary.Helpers;
 using movieLibrary.Entities;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Cryptography;
-using System.Text;
 
 
 namespace movieLibrary.Controllers
@@ -21,34 +20,27 @@ namespace movieLibrary.Controllers
             this.mapper = mapper;
         }
 
-        public static string EncrypPass(string str)
-        {
-            SHA256 sha256 = SHA256Managed.Create();
-            ASCIIEncoding encoding = new ASCIIEncoding();
-            byte[] stream = null;
-            StringBuilder sb = new StringBuilder();
-            stream = sha256.ComputeHash(encoding.GetBytes(str));
-            for (int i = 0; i < stream.Length; i++) sb.AppendFormat("{0:x2}", stream[i]);
-            return sb.ToString();
-        }
+        //Check email existing
+        private Task<bool> CheckEmailExistAsync(string? Email)
+            => context.Users.AnyAsync(x => x.Email == Email);
+
 
         //Insert one user
-        [HttpPost("insertone")]
+        [HttpPost("register")]
         public async Task<ActionResult> Post(User userCreateDto)
         {
-            var user = new User()
-            {
-                Iduser = userCreateDto.Iduser,
-                Name = userCreateDto.Name,
-                Lastname = userCreateDto.Lastname,
-                Birthdate = userCreateDto.Birthdate,
-                Role = userCreateDto.Role,
-                Email = userCreateDto.Email,
-                Password = EncrypPass(userCreateDto.Password)
-            };            
+            var user = mapper.Map<User>(userCreateDto);   
+            // check email
+            if (await CheckEmailExistAsync(user.Email))
+                return BadRequest(new { Message = "Email Already Exist" });                
+
+            user.Password = EncryptPassword.HashPassword(user.Password);
             context.Add(user);
             await context.SaveChangesAsync();
-            return Ok();
+            return Ok(new
+            {
+                Message = "User registred"
+            });
         }
 
         //Get all users

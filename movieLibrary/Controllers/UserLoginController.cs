@@ -1,7 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using movieLibrary.DTO;
-using movieLibrary.Entities;
+using movieLibrary.Helpers;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
@@ -26,13 +26,27 @@ namespace movieLibrary.Controllers
             this.mapper = mapper;
         }
         
+        
+
+
         //Login
+
         [HttpPost("login")]
         public async Task<ActionResult> Post([FromBody] UserLoginCreateDto request)
         {
-            var userAuthenticate = await context.Users.SingleOrDefaultAsync(u => u.Email == request.Email && u.Password == request.Password);
+            if (request == null)
+                return BadRequest();
 
-            if(userAuthenticate != null)
+            var userAuthenticate = await context.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
+
+            if(userAuthenticate == null)
+                return NotFound(new { Message = "User not found!" });
+
+            if (!EncryptPassword.VerifyPassword(request.Password, userAuthenticate.Password))
+            {
+                return BadRequest(new { Message = "Password is Incorrect" });
+            }
+            else
             {
                 var keyBytes = Encoding.ASCII.GetBytes(secretKey);
                 var claims = new ClaimsIdentity();
@@ -52,11 +66,10 @@ namespace movieLibrary.Controllers
 
                 return StatusCode(StatusCodes.Status200OK, new{ token = tokenCreated});
             }
-            else
-            {
-                return StatusCode(StatusCodes.Status401Unauthorized, new{ token = ""});
-            };
-            }
-            
-        }
+            // else
+            // {
+            //     return StatusCode(StatusCodes.Status401Unauthorized, new{ token = ""});
+            // };
+        }            
     }
+}
