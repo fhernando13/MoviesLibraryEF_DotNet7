@@ -26,6 +26,20 @@ builder.Services.AddAuthentication(config => {
         ValidateAudience = false
     };
 });
+//Configuracion CORS
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        builder =>
+        {
+            builder.WithOrigins(
+                "http://localhost:4200",
+                "http://localhost:4200/users"
+                )
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+        }); 
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -44,6 +58,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors();
 
 app.UseAuthentication();    
 

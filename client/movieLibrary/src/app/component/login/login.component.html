@@ -1,41 +1,52 @@
-
 <div class="container" >
   <div class="row">
+    <!-- left -->
     <div class="col-4"></div>
-
+    <!-- center -->
     <div class="col-4" id="logo">
       <!-- center -->
-      <mat-card class="card-login">    
-        <div class="logo">
-          <img mat-card-image src="./assets/dotnetAngular.png" 
-              alt="Logo" 
-              width="300" 
-              height="290" 
-              class="d-inline-block align-text-top py-2">           
-        </div>
-        <mat-card-content class="form-login">
-          <!-- EMAIL -->
-          <mat-form-field class="inputlogin">
-            <mat-label><mat-icon> mail_outline</mat-icon> Enter your email</mat-label>
-            <input type="text" matInput >
-          </mat-form-field>
-          <!-- PASSWORD -->
-          <mat-form-field class="inputlogin">
-            <mat-label><mat-icon>lock</mat-icon> Enter your password</mat-label>
-            <input type="password" matInput >
-          </mat-form-field>
-        </mat-card-content>
-        <mat-card-actions>          
-          <button mat-raised-button 
-                  color="primary" 
-                  class="buttonlogin"
-                  matTooltip="Click to into app"
-                  matTooltipClass="info-button-login">LOGGIN</button>                      
-        </mat-card-actions>
-      </mat-card>
-    </div>
 
+      <!-- Login -->
+      <form [formGroup]="userForm" (ngSubmit)="buttonSave()">
+        <mat-card class="card-login">    
+          <div class="logo">
+            <img mat-card-image src="./assets/dotnetAngular.png" 
+                alt="Logo" 
+                width="300" 
+                height="290" 
+                class="d-inline-block align-text-top py-2">           
+          </div>
+          <mat-card-content class="form-login">
+            <!-- EMAIL -->
+            <mat-form-field class="inputlogin">
+              <mat-label><mat-icon> mail_outline</mat-icon> Enter your email</mat-label>
+              <input type="text" matInput formControlName="email">
+              <mat-error *ngIf="email.hasError('required')">
+                Email is <strong>required</strong>                                         
+              </mat-error>
+            </mat-form-field>
+            <!-- PASSWORD -->
+            <mat-form-field class="inputlogin">
+              <mat-label><mat-icon>lock</mat-icon> Enter your password</mat-label>
+              <input type="password" matInput formControlName="password">              
+            </mat-form-field>
+          </mat-card-content>
+          <mat-card-actions>          
+            <button mat-raised-button 
+                    color="primary" 
+                    class="buttonlogin"
+                    matTooltip="Click to into app"
+                    matTooltipClass="info-button-login">LOGGIN</button>                      
+          </mat-card-actions>
+        </mat-card>
+      </form>
+    </div>
+    <!-- right -->
     <div class="col-4"></div>
   </div>
+</div>
+
+
+
 
 
