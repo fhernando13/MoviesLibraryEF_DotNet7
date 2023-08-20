@@ -1,7 +1,45 @@
 <mat-toolbar color="primary">
     <mat-toolbar color="primary">
       <!-- <img src="./assets/angular1.png" alt="Logo" width="45" height="45" class="d-inline-block align-text-top"> -->
-  </mat-toolbar>
-      <span class="example-spacer"></span>
-      <mat-slide-toggle (ngModelChange)="onChange($event)" [(ngModel)]="isDarkThemeActive">Dark mode</mat-slide-toggle>
-  </mat-toolbar>
+
+      <button mat-button [matMenuTriggerFor]="aboveMenu">Users</button>
+        <mat-menu #aboveMenu="matMenu" yPosition="above">
+          <button mat-menu-item (click)="usersForm()">Form</button>
+          <button mat-menu-item (click)="usersList()">List</button>
+        </mat-menu>
+
+        <button mat-button [matMenuTriggerFor]="belowMenu">Movies</button>
+        <mat-menu #belowMenu="matMenu" yPosition="below">
+          <button mat-menu-item>Item 1</button>
+          <button mat-menu-item>Item 2</button>
+        </mat-menu>
+
+        <button mat-button [matMenuTriggerFor]="beforeMenu">Actors</button>
+        <mat-menu #beforeMenu="matMenu" xPosition="before">
+          <button mat-menu-item>Item 1</button>
+          <button mat-menu-item>Item 2</button>
+        </mat-menu>
+
+        <button mat-button [matMenuTriggerFor]="afterMenu">Genders</button>
+        <mat-menu #afterMenu="matMenu" xPosition="after">
+          <button mat-menu-item>Item 1</button>
+          <button mat-menu-item>Item 2</button>
+        </mat-menu>
+
+    </mat-toolbar>
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>brightness_6</mat-icon>
+          <span class="example-spacer"></span>
+        <mat-slide-toggle (ngModelChange)="onChange($event)" [(ngModel)]="isDarkThemeActive">Dark mode</mat-slide-toggle>
+        </button>
+        <button mat-menu-item>
+            <mat-icon>person</mat-icon>
+            <span>Logout</span>
+        </button>
+      </mat-menu>
+        
+</mat-toolbar>

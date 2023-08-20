@@ -1,5 +1,10 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+
+//Sweetalert
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-navigation',
@@ -10,7 +15,9 @@ export class NavigationComponent  {
   
   isDarkThemeActive = false;
   
-  constructor(@Inject(DOCUMENT)private document: Document){
+  constructor(@Inject(DOCUMENT)private document: Document,
+    private activedRouted: ActivatedRoute,
+    private router: Router){
   }
 
  
@@ -22,6 +29,14 @@ export class NavigationComponent  {
     else{
      this.document.body.classList.remove('darkMode');     
     }
+  }
+
+  usersForm(){
+    this.router.navigate(['usersForm'])
+  }
+
+  usersList(){
+    this.router.navigate(['usersList'])
   }
 
 }

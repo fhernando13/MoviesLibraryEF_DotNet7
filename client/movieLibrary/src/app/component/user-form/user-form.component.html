@@ -1,1 +1,127 @@
 <app-navigation></app-navigation>
+<div class="container">
+    
+    <div class="row">
+        <div class="col-md-12 pt-5">
+            <!-- Form -->
+            <!--  -->
+            <form [formGroup]="userForm" (ngSubmit)="buttonSave()">
+                              
+                <!-- startcard -->
+                    <mat-card class="example-card">
+                        <mat-card-header>
+                        <mat-card-title >{{title | uppercase}}</mat-card-title>
+                        </mat-card-header>
+                        <hr>
+                    <div class="container" >  
+                        <div class="row">
+                            <div class="col-md-4">                        
+                                <!-- Name -->
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Name</mat-label>
+                                    <input type="text" matInput formControlName="name" placeholder="Add name">
+                                    <!-- Validation -->
+                                    <!-- <mat-error *ngIf="name.hasError('required')">
+                                        Name is <strong>required</strong>                                         
+                                    </mat-error> 
+                                    <mat-error *ngIf="name.hasError('minlength')">
+                                        Name must be at least <strong>3 characters</strong> long.
+                                    </mat-error>                                                                        -->
+                                </mat-form-field>                                
+                            </div>
+
+                            <div class="col-md-4">
+                                <!-- Lastname -->
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Lastname</mat-label>
+                                    <input type="text" matInput formControlName="lastname" placeholder="Add lastname">
+                                    <!-- Validations -->                            
+                                    <!-- <mat-error *ngIf="lastname.hasError('required')">
+                                        Lastame is <strong>required</strong>                                         
+                                    </mat-error> 
+                                    <mat-error *ngIf="lastname.hasError('minlength')">
+                                        Lastame must be at least <strong>4 characters</strong> long.
+                                    </mat-error>   -->
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-md-4">
+                                <!-- Role -->
+                                <mat-form-field>
+                                    <mat-label>Select an option</mat-label>
+                                    <mat-select [(value)]="selected">
+                                      <mat-option>None</mat-option>
+                                      <mat-option value="option1">Employee</mat-option>
+                                      <mat-option value="option2">Technical</mat-option>
+                                      <mat-option value="option3">Admin</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div class="row">                            
+                            
+                        </div>
+
+                        <div class="row">  
+                            <div class="col-md-4">
+                                <!-- Birthdate -->
+                                <mat-form-field>
+                                    <mat-label>Choose a birthdate</mat-label>
+                                    <input matInput [matDatepicker]="picker" formControlName="birthdate">
+                                    <mat-hint>MM/DD/YYYY</mat-hint>
+                                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-md-4">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Email</mat-label>
+                                    <input type="email" matInput formControlName="email" placeholder="Add email">
+                                    <mat-icon matSuffix color="primary">email</mat-icon>
+                                    <!-- Validations -->                            
+                                    <mat-error *ngIf="email.hasError('required')">
+                                        Address email is <strong>required</strong> 
+                                    </mat-error>       
+                                    <mat-error *ngIf="email.hasError('pattern')">
+                                        Address email is not<strong>correct</strong> 
+                                    </mat-error>                              
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-md-4">
+                                <!-- Email -->
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Password</mat-label>
+                                    <input type="email" matInput formControlName="password" placeholder="Add password">
+                                    <mat-icon matSuffix color="primary">lock</mat-icon>
+                                    <!-- Validations -->                            
+                                    <!-- <mat-error *ngIf="email.hasError('required')">
+                                        Address email is <strong>required</strong> 
+                                    </mat-error>       
+                                    <mat-error *ngIf="email.hasError('pattern')">
+                                        Address email is not<strong>correct</strong>  -->
+                                    <!-- </mat-error>                               -->
+                                </mat-form-field>                                                
+                            </div>
+
+                        </div>                                                                            
+
+                        <mat-card-actions>
+                            <button 
+                            mat-raised-button 
+                            color="accent"
+                            matTooltip="Save the user"
+                            [disabled]="!userForm.valid"
+                            >{{button|uppercase}}</button>
+                        </mat-card-actions>
+                    </div>     
+                    </mat-card>
+                <!-- end card -->
+                                                                             
+            </form>
+            
+        </div>
+    </div>
+</div>

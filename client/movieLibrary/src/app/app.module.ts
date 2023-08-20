@@ -20,7 +20,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
-
+import { MatMenuModule  } from '@angular/material/menu';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -46,7 +50,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatToolbarModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatMenuModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import { Router } from '@angular/router';
 import { LoginService } from 'src/app/service/login/login.service';
 
 //Sweetalert
@@ -22,41 +22,42 @@ export class LoginComponent implements OnInit {
   createFormGroup() {
     return new FormGroup({      
       email: new FormControl('', [Validators.required, Validators.minLength(5), Validators.pattern(this.emailPattern)]),
-      password: new FormControl('', [Validators.required])
+      password: new FormControl('', Validators.required)
     });
   }
 
-  userForm: FormGroup | any;
+  loginForm: FormGroup | any;
 
   constructor(private loginService: LoginService,
-              private router: Router,
-              private activedRouted: ActivatedRoute)
+              private router: Router)
     {
-      this.userForm = this.createFormGroup();
+      this.loginForm = this.createFormGroup();
     }
   
     get email() {
-      return this.userForm.get('email');
+      return this.loginForm.get('email');
     }
     get password() {
-      return this.userForm.get('password');
+      return this.loginForm.get('password');
     }  
 
   ngOnInit(): void{    
   }
 
-  buttonSave(){
-    if(this.userForm){
-      console.log(this.userForm);
-      this.loginService.loginUser(this.userForm.value).subscribe({
-        next: res => this.userForm.value = res,
-        error: (err) => console.log(err)
-      })
-    }else {
-      console.log('error');
-    }
-    return this.router.navigate(['/users']);
-}
+  Login(){
+    if(this.loginForm)
+      console.log(this.loginForm);
+      this.loginService.loginUser(this.loginForm.value).subscribe({
+        next: res => this.loginForm.value = res,
+        error: (err) => (Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!'          
+        }),
+        this.router.navigate(["/login"]))   
+      })    
+    return this.router.navigate(['/usersList']);
+  }
 
 }
 
