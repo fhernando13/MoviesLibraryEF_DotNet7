@@ -32,7 +32,7 @@ namespace movieLibrary.Controllers
         //Login
 
         [HttpPost("login")]
-        public async Task<ActionResult> Post([FromBody] UserLoginCreateDto request)
+        public async Task<ActionResult> Authenticate([FromBody] UserCreateDto request)
         {
             if (request == null)
                 return BadRequest();
