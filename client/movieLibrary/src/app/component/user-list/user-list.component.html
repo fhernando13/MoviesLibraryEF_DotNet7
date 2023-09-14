@@ -1,2 +1,77 @@
 <app-navigation></app-navigation>
-<H1>Hello world</H1>
+
+<div class="container">
+    <div class="row">
+        <div class="div" id="xls">
+            <button mat-raised-button color="primary" matTooltip="Add new user" routerLink="/users/add"><mat-icon>person_add</mat-icon> Add user</button>            
+        </div>
+        <div class="col-12">
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <mat-card-title>{{title|uppercase}}</mat-card-title>
+                </mat-card-header>
+                    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                        <ng-container matColumnDef="ID">
+                            <th mat-header-cell *matHeaderCellDef> Id </th>
+                            <td mat-cell *matCellDef="let row"> {{row.iduser}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Name">
+                          <th mat-header-cell *matHeaderCellDef> Name </th>
+                          <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Lastname">
+                          <th mat-header-cell *matHeaderCellDef> Lastname </th>
+                          <td mat-cell *matCellDef="let row"> {{row.lastname}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Email">
+                          <th mat-header-cell *matHeaderCellDef> Email </th>
+                          <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Role">
+                            <th mat-header-cell *matHeaderCellDef> Role</th>
+                            <td mat-cell *matCellDef="let row"> {{row.role}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Options">
+                            <th mat-header-cell *matHeaderCellDef>Options</th>
+                            <td mat-cell *matCellDef="let row">
+                                <!-- details -->
+                                <button
+                                mat-mini-fab
+                                color="accent"
+                                matTooltip="Details about this user"
+                                
+                                id="buttonList"
+                                ><mat-icon>list</mat-icon>
+                                </button>
+                                <!-- Edit -->
+                                <button
+                                mat-mini-fab
+                                color="primary"
+                                matTooltip="Edit this user"
+                                [routerLink]="['/users/update', row.iduser]"
+                                ><mat-icon>edit</mat-icon>
+                                </button>
+                                <!-- Delete -->
+                                <button
+                                mat-mini-fab
+                                color="warn"
+                                matTooltip="Delete this user"
+                                (click)="askDelete(row.iduser)"
+                                id="buttonList"
+                                ><mat-icon>delete</mat-icon>
+                                </button>                                
+                            </td>
+                        </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+
+                    <mat-paginator [pageSizeOptions]="[5, 10]"
+                                   showFirstLastButtons
+                                   aria-label="Select page of periodic elements">
+                    </mat-paginator>
+
+            </mat-card>
+        </div>
+    </div>
+</div>

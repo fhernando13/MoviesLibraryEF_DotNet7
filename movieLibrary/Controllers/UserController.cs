@@ -4,12 +4,15 @@ using movieLibrary.DTO;
 using movieLibrary.Helpers;
 using movieLibrary.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace movieLibrary.Controllers
 {
     [ApiController]
     [Route("api/users")]
+    //[Authorize]
+    
     public class UserController: ControllerBase
     {
         private readonly AppDbContext context;

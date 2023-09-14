@@ -22,15 +22,16 @@ export class UserService {
     return this.http.post(this.API_URI+"/register",user);
   }
 
-  deleteUser(_id:string): Observable<any>{
-    return this.http.delete(this.API_URI+'/delete/'+_id);
+  deleteUser(id:string): Observable<any>{
+    return this.http.delete(this.API_URI+"/delete/"+id)
+    // return this.http.delete(this.API_URI+"/delete/"+Iduser);
   }
 
-  getUser(_id: string): Observable<any>{
-    return this.http.get(this.API_URI+'/getone/'+_id);
+  getUser(id: string){
+    return this.http.get(`${this.API_URI}/getone/${id}`);
   }
   
-  updateUser(_id: string, updateUser: User): Observable<any>{
-    return this.http.put(this.API_URI+'/update/'+_id, updateUser);
+  updateUser(id: string, updateUser: User): Observable<any>{
+    return this.http.put(this.API_URI+'/update/'+id, updateUser);
   }
 }

@@ -1,9 +1,12 @@
 export interface User {
-    _id?: string;
-    name: string
+    id?: number;
+    name: string;
     lastname: string;
-    birthdate: string;
-    role: string;    
+    birthdate: string;       
     email: string;
     password: string;
+    role?: string; 
+    refreshToken?: string;
+    refreshTokenExpireTime?: string;
+    token?: string;
 }
