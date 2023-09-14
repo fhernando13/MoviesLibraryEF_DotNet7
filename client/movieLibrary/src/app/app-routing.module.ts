@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'usersForm', component: UserFormComponent },
   { path: 'usersList', component: UserListComponent },
+  { path: 'usersFormUpdate/:iduser', component: UserFormComponent },
 
 ];
 
