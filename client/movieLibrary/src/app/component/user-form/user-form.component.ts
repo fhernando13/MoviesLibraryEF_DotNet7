@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { UserService } from 'src/app/service/users/user.service';
+import { CustomValidators } from 'src/app/validators/customValidators';
 
 //Sweetalert
 import Swal from 'sweetalert2'
@@ -17,16 +18,33 @@ export class UserFormComponent implements OnInit {
   title = "Add information the user";
   button = "save";
   iduser: string|null;
+  
 
   createFormGroup() {
     return new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
       lastname: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]),
       birthdate: new FormControl('', Validators.required),      
+      role: new FormControl(this.selected, Validators.required),  
       email: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      password: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]), 
-    });
+      password: new FormControl('', [Validators.required, 
+                                    // Validators.minLength(10), 
+                                    // Validators.maxLength(10)//
+                                  ]), 
+      password2: new FormControl('', [Validators.required, 
+        
+              // Validators.minLength(10), 
+              // Validators.maxLength(10)
+            ]),                                  
+    }, {
+      validators: CustomValidators.mustBeEquals(
+        'password',
+        'password2'
+      ),
+    });    
   }
+
+   
   
     userForm: FormGroup | any;
 
@@ -62,58 +80,21 @@ get password() {
 return this.userForm.get('password');
 }
 
-  ngOnInit(): void{    
-    this.isUpdate();
+  ngOnInit(): void{        
   }
 
-  isUpdate(){    
-    if(this.iduser){
-      // const params = this.activedRouted.snapshot.params;
-      this.title = "Update user";
-      this.button = "Update"
-      const data = this.userService.getUser(this.iduser)
-      .subscribe(
-        {
-          next: data=>(console.log(data)),
-          error: err=>(alert(err))
-        }
-      )
-    }
-  }
-
-  buttonSave(){
-    if(this.iduser !== null){
-      this.userService.updateUser(this.iduser, this.userForm.value).subscribe({
-        next: data =>(this.userForm = data),
-        error: err => console.log(err),
-      });
-      Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'User has been updated',
-        showConfirmButton: false,
-        timer: 1500
-      })    
-    }else{
-      //create user
-    if(this.userForm){
-      console.log(this.userForm);
-      this.userService.saveUser(this.userForm.value).subscribe({
-        next: res => this.userForm.value = res,
-        error: (err) => console.log(err)
-      })
-      Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Your work has been saved',
-        showConfirmButton: false,
-        timer: 1500
-      })      
-    }else {
+  buttonSave(){    
+    if (this.userForm) {
+      // this.userService.saveUser(this.userForm.value).subscribe({
+      //   next: (res) => (this.userForm = res),
+      //   error: (err) => console.log(err),
+      // });            
+      // Swal.fire('Good job!', 'User saved!', 'success');
+      console.log(this.userForm)
+    } else {
       console.log('error');
     }
-    }//back to home
-    return this.router.navigate(['/users']);
+    return this.router.navigate(['/usersList']);
   }
-
+    
 }

@@ -44,24 +44,8 @@
                                     </mat-error>   -->
                                 </mat-form-field>
                             </div>
-
-                            <div class="col-md-4">
-                                <!-- Role -->
-                                <mat-form-field>
-                                    <mat-label>Select an option</mat-label>
-                                    <mat-select [(value)]="selected" >
-                                      <mat-option >None</mat-option>
-                                      <mat-option value="option1">Employee</mat-option>
-                                      <mat-option value="option2">Technical</mat-option>
-                                      <mat-option value="option3">Admin</mat-option>
-                                    </mat-select>
-                                  </mat-form-field>
-                            </div>
-                        </div>
-
-                        <div class="row">                            
                             
-                        </div>
+                        </div>                        
 
                         <div class="row">  
                             <div class="col-md-4">
@@ -75,26 +59,41 @@
                                 </mat-form-field>
                             </div>
 
-                            <div class="col-md-4">
+                            <div class="col-md-5">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Email</mat-label>
                                     <input type="email" matInput formControlName="email" placeholder="Add email">
                                     <mat-icon matSuffix color="primary">email</mat-icon>
                                     <!-- Validations -->                            
-                                    <mat-error *ngIf="email.hasError('required')">
+                                    <!-- <mat-error *ngIf="email.hasError('required')">
                                         Address email is <strong>required</strong> 
                                     </mat-error>       
                                     <mat-error *ngIf="email.hasError('pattern')">
                                         Address email is not<strong>correct</strong> 
-                                    </mat-error>                              
+                                    </mat-error>                               -->
                                 </mat-form-field>
                             </div>
 
+                            <div class="col-md-3">
+                                <!-- Role -->
+                                <mat-form-field>
+                                    <mat-label>Choice a role</mat-label>
+                                    <mat-select [(value)]="selected" formControlName="role">                                      
+                                      <mat-option value="Employee">Employee</mat-option>
+                                      <mat-option value="Technical">Technical</mat-option>
+                                      <mat-option value="Admin">Admin</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+
+                        </div> 
+
+                        <div class="row"> 
                             <div class="col-md-4">
-                                <!-- Email -->
+                                <!-- Password -->
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Password</mat-label>
-                                    <input type="email" matInput formControlName="password" placeholder="Add password">
+                                    <input type="text" matInput formControlName="password" placeholder="Add password">
                                     <mat-icon matSuffix color="primary">lock</mat-icon>
                                     <!-- Validations -->                            
                                     <!-- <mat-error *ngIf="email.hasError('required')">
@@ -106,8 +105,23 @@
                                 </mat-form-field>                                                
                             </div>
 
-                        </div>                                                                            
-
+                            <div class="col-md-4">
+                                <!-- Password2 -->
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Confirm password</mat-label>
+                                    <input type="text" matInput formControlName="password2" placeholder="Add password">
+                                    <mat-icon matSuffix color="primary">lock</mat-icon>
+                                    <!-- Validations -->                            
+                                     <mat-error *ngIf="password.getError('mustBeEqual')">
+                                        No es igual <strong>required</strong> 
+                                    </mat-error>  <!--     
+                                    <mat-error *ngIf="email.hasError('pattern')">
+                                        Address email is not<strong>correct</strong>  -->
+                                    <!-- </mat-error>                               -->
+                                </mat-form-field>                                                
+                            </div>
+                        </div>    
+                        
                         <mat-card-actions>
                             <button 
                             mat-raised-button 
