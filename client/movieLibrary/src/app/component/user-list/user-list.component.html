@@ -37,18 +37,18 @@
                                 <!-- details -->
                                 <button
                                 mat-mini-fab
-                                color="accent"
+                                color="primary"
                                 matTooltip="Details about this user"
-                                
+                                [routerLink]="['/usersDetails', row.iduser]"
                                 id="buttonList"
                                 ><mat-icon>list</mat-icon>
                                 </button>
                                 <!-- Edit -->
                                 <button
                                 mat-mini-fab
-                                color="primary"
+                                color="accent"
                                 matTooltip="Edit this user"
-                                
+                                [routerLink]="['/usersUpdate', row.iduser]"
                                 ><mat-icon>edit</mat-icon>
                                 </button>
                                 <!-- Delete -->

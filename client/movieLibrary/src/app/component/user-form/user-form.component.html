@@ -30,19 +30,19 @@
                                 </mat-form-field>                                
                             </div>
 
-                            <div class="col-md-4">
-                                <!-- Lastname -->
+                            <div class="col-md-4">                        
+                                <!-- Name -->
                                 <mat-form-field class="example-full-width">
-                                    <mat-label>Lastname</mat-label>
+                                    <mat-label>Lastame</mat-label>
                                     <input type="text" matInput formControlName="lastname" placeholder="Add lastname">
-                                    <!-- Validations -->                            
-                                    <!-- <mat-error *ngIf="lastname.hasError('required')">
-                                        Lastame is <strong>required</strong>                                         
+                                    <!-- Validation -->
+                                    <!-- <mat-error *ngIf="name.hasError('required')">
+                                        Name is <strong>required</strong>                                         
                                     </mat-error> 
-                                    <mat-error *ngIf="lastname.hasError('minlength')">
-                                        Lastame must be at least <strong>4 characters</strong> long.
-                                    </mat-error>   -->
-                                </mat-form-field>
+                                    <mat-error *ngIf="name.hasError('minlength')">
+                                        Name must be at least <strong>3 characters</strong> long.
+                                    </mat-error>                                                                        -->
+                                </mat-form-field>                                
                             </div>
                             
                         </div>                        
@@ -98,7 +98,7 @@
                                     <!-- Validations -->                            
                                     <mat-error *ngIf="password.hasError('required')">
                                         Password is <strong>required</strong> 
-                                    </mat-error>  
+                                    </mat-error>                                      
                                     <!-- <mat-error *ngIf="email.hasError('pattern')">
                                         Address email is not<strong>correct</strong>  -->
                                     <!-- </mat-error>                               -->
@@ -117,10 +117,7 @@
                                     </mat-error>                         
                                      <mat-error *ngIf="password2.getError('mustBeEquals')">
                                         No es <strong>Igual</strong> 
-                                    </mat-error>  <!--     
-                                    <mat-error *ngIf="email.hasError('pattern')">
-                                        Address email is not<strong>correct</strong>  -->
-                                    <!-- </mat-error>                               -->
+                                    </mat-error>  
                                 </mat-form-field>                                                
                             </div>
                         </div>    

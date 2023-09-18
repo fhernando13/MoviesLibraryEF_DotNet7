@@ -27,25 +27,11 @@ export class UserFormComponent implements OnInit {
       birthdate: new FormControl('', Validators.required),      
       role: new FormControl(this.selected, Validators.required),  
       email: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      password: new FormControl('', [Validators.required, 
-                                    // Validators.minLength(10), 
-                                    // Validators.maxLength(10)//
-                                  ]), 
-      password2: new FormControl('', [Validators.required, 
-        
-              // Validators.minLength(10), 
-              // Validators.maxLength(10)
-            ]),                                  
-    }, {
-      validators: CustomValidators.mustBeEquals(
-        'password',
-        'password2'
-      ),
+      password: new FormControl('', [Validators.required]), 
+      password2: new FormControl('', [Validators.required]),                                  
     });    
   }
-
-   
-  
+     
     userForm: FormGroup | any;
 
     constructor(private userService: UserService,
@@ -84,7 +70,8 @@ get password2() {
 return this.userForm.get('password2');
 }
 
-  ngOnInit(): void{        
+  ngOnInit(): void{    
+    this.isUpdate();    
   }
 
   buttonSave(){    
@@ -110,5 +97,30 @@ return this.userForm.get('password2');
     }
     return this.router.navigate(['/usersList']);
   }
-    
+
+  isUpdate(){    
+    // if(this.iduser){
+    //   this.title = "Update user";
+    //   this.button = "Update";
+    //   const params = this.activedRouted.snapshot.params;
+    //   const data = this.userService.getUser(params['iduser'])
+    //     .subscribe(
+    //       {
+    //         next: data=>(this.userForm.setValue(            
+    //           {
+    //             name: data.name,
+    //             lastname: data.lastname,
+    //             birthdate: data.birthdate,
+    //             role: data.role,
+    //             email: data.email,
+    //             password: data.password,
+    //             password2: data.password
+    //           }
+    //         )),
+    //         error: err=>(console.log(err)),
+    //       }
+    //   )
+    // }
+  }
+ 
 }

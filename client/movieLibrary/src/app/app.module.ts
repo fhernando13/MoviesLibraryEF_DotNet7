@@ -28,6 +28,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { UserDetailComponent } from './component/user-detail/user-detail.component';
+import { UserUpdateComponent } from './component/user-update/user-update.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     LoginComponent,
     UserFormComponent,
     UserListComponent,
-    NavigationComponent
+    NavigationComponent,
+    UserDetailComponent,
+    UserUpdateComponent
   ],
   imports: [
     BrowserModule,

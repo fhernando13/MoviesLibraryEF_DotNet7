@@ -27,7 +27,7 @@ export class UserService {
     // return this.http.delete(this.API_URI+"/delete/"+Iduser);
   }
 
-  getUser(id: string){
+  getUser(id: string): Observable<any>{
     return this.http.get(`${this.API_URI}/getone/${id}`);
   }
   

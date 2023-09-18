@@ -1,0 +1,79 @@
+<app-navigation></app-navigation>
+<div class="container">
+
+    <div class="row">
+        
+        <div class="col-md-12 pt-5">
+            <form [formGroup]="userUpdate" (ngSubmit)="buttonUpdate()">
+                <mat-card class="example-card">
+                    <mat-card-header>
+                    <mat-card-title >{{title | uppercase}}</mat-card-title>
+                    </mat-card-header>
+                    <br>
+                <mat-card-content>
+                <div class="container" >
+                    <div class="row">
+                        <div class="col-md-4">                        
+                            <!-- Name -->
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Name</mat-label>
+                                <input matInput formControlName="name" readonly>   
+                                                        
+                            </mat-form-field>                                
+                        </div>
+                        <div class="col-md-4">                        
+                            <!-- Lastname -->
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Lastname</mat-label>
+                                <input type="text" matInput formControlName="lastname" readonly>                                
+                            </mat-form-field>                                
+                        </div>
+                    </div>
+                    <div class="row">  
+                        <div class="col-md-4">
+                            <!-- Birthdate -->
+                            <mat-form-field>
+                                <mat-label>Birthdate</mat-label>
+                                <input matInput [matDatepicker]="picker" formControlName="birthdate" readonly>
+                                <mat-hint>MM/DD/YYYY</mat-hint>
+                                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-5">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Email</mat-label>
+                                <input type="email" matInput formControlName="email" >
+                                <mat-icon matSuffix color="primary">email</mat-icon>                                
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-3">
+                            <!-- Role -->
+                            <mat-form-field>
+                                <mat-label>Choice a role</mat-label>
+                                <mat-select [(value)]="selected" formControlName="role">                                      
+                                  <mat-option value="Employee">Employee</mat-option>
+                                  <mat-option value="Technical">Technical</mat-option>
+                                  <mat-option value="Admin">Admin</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>  
+                    <mat-card-actions>
+                        <button 
+                        mat-raised-button 
+                        color="accent"
+                        matTooltip="Save the user"
+                        [disabled]="!userUpdate.valid"
+                        >{{button|uppercase}}</button>
+                    </mat-card-actions>                              
+
+                </div>     
+                </mat-card-content>
+                </mat-card>
+            </form>
+        </div>
+    </div>
+</div>
