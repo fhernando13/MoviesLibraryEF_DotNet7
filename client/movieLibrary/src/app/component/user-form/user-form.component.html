@@ -93,13 +93,13 @@
                                 <!-- Password -->
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Password</mat-label>
-                                    <input type="text" matInput formControlName="password" placeholder="Add password">
+                                    <input type="password" matInput formControlName="password" placeholder="Add password">
                                     <mat-icon matSuffix color="primary">lock</mat-icon>
                                     <!-- Validations -->                            
-                                    <!-- <mat-error *ngIf="email.hasError('required')">
-                                        Address email is <strong>required</strong> 
-                                    </mat-error>       
-                                    <mat-error *ngIf="email.hasError('pattern')">
+                                    <mat-error *ngIf="password.hasError('required')">
+                                        Password is <strong>required</strong> 
+                                    </mat-error>  
+                                    <!-- <mat-error *ngIf="email.hasError('pattern')">
                                         Address email is not<strong>correct</strong>  -->
                                     <!-- </mat-error>                               -->
                                 </mat-form-field>                                                
@@ -109,11 +109,14 @@
                                 <!-- Password2 -->
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Confirm password</mat-label>
-                                    <input type="text" matInput formControlName="password2" placeholder="Add password">
+                                    <input type="password" matInput formControlName="password2" placeholder="Add password">
                                     <mat-icon matSuffix color="primary">lock</mat-icon>
-                                    <!-- Validations -->                            
-                                     <mat-error *ngIf="password.getError('mustBeEqual')">
-                                        No es igual <strong>required</strong> 
+                                    <!-- Validations -->   
+                                    <mat-error *ngIf="password2.hasError('required')">
+                                        Password is <strong>required</strong> 
+                                    </mat-error>                         
+                                     <mat-error *ngIf="password2.getError('mustBeEquals')">
+                                        No es <strong>Igual</strong> 
                                     </mat-error>  <!--     
                                     <mat-error *ngIf="email.hasError('pattern')">
                                         Address email is not<strong>correct</strong>  -->

@@ -80,17 +80,31 @@ get password() {
 return this.userForm.get('password');
 }
 
+get password2() {
+return this.userForm.get('password2');
+}
+
   ngOnInit(): void{        
   }
 
   buttonSave(){    
-    if (this.userForm) {
-      // this.userService.saveUser(this.userForm.value).subscribe({
-      //   next: (res) => (this.userForm = res),
-      //   error: (err) => console.log(err),
-      // });            
-      // Swal.fire('Good job!', 'User saved!', 'success');
-      console.log(this.userForm)
+    if (this.userForm) {      
+      if(this.password.value === this.password2.value)
+      {
+        this.userService.saveUser(this.userForm.value).subscribe({
+        next: (res) => (this.userForm = res),
+        error: (err) => console.log(err),
+        });            
+        Swal.fire('Good job!', 'User saved!', 'success');
+      }
+      else
+      {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Password are deferents!',          
+        })
+      }      
     } else {
       console.log('error');
     }
