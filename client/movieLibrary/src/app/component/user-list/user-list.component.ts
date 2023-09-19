@@ -61,13 +61,13 @@ export class UserListComponent implements OnInit {
             next: res =>{ this.users = res },
             error: err =>{console.log(err)},        
           }      
-        );
-        
-        Swal.fire('Deleted!')      
+        );        
+      Swal.fire('Deleted!');
+      this.listUsers();
+      this.router.navigate(['/usersList']);   
       } else if (result.isDenied) {
         Swal.fire('User will not be deleted')
       }
-      return this.listUsers();
     })
   }
 

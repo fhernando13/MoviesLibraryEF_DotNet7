@@ -3,6 +3,10 @@ import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { UserService } from 'src/app/service/users/user.service';
 
+//Sweetalert
+import Swal from 'sweetalert2'
+
+
 @Component({
   selector: 'app-user-update',
   templateUrl: './user-update.component.html',
@@ -25,7 +29,7 @@ export class UserUpdateComponent implements OnInit{
     });  
   }
 
-  userUpdate: FormGroup | any = {
+  userFormUpdate: FormGroup | any = {
     iduser: 0,
     name: '',
     lastname: '',
@@ -37,28 +41,28 @@ export class UserUpdateComponent implements OnInit{
   constructor(private userService: UserService,
     private router: Router,
     private activedRouted: ActivatedRoute){
-    this.userUpdate = this.createFormGroup();
+    this.userFormUpdate = this.createFormGroup();
     this.iduser = this.activedRouted.snapshot.paramMap.get('iduser');
 }
 
 get name() {
-  return this.userUpdate.get('name');
+  return this.userFormUpdate.get('name');
 }
   
 get lastname() {
-  return this.userUpdate.get('lastname');
+  return this.userFormUpdate.get('lastname');
 }
   
 get birthdate() {
-  return this.userUpdate.get('birthadte');
+  return this.userFormUpdate.get('birthadte');
 }
   
 get role() {
-  return this.userUpdate.get(this.selected);
+  return this.userFormUpdate.get(this.selected);
 }
   
 get email() {
-  return this.userUpdate.get('email');
+  return this.userFormUpdate.get('email');
 }
 
   ngOnInit(){     
@@ -72,7 +76,7 @@ get email() {
       const data:any = this.userService.getUser(params['iduser'])
       .subscribe(
         {
-          next: data=>(this.userUpdate.setValue(            
+          next: data=>(this.userFormUpdate.setValue(            
             {
               name: data.name,
               lastname: data.lastname,
@@ -93,7 +97,19 @@ get email() {
   }
 
   buttonUpdate(){
-
+    if(this.userFormUpdate){
+      this.userService.updateUser(this.iduser, this.userFormUpdate.value).subscribe({
+          next: res=>(this.userFormUpdate = res),
+          error: err=>(console.log(err))
+        }
+      )
+      this.router.navigate(['/users']);
+      Swal.fire('Good job!', 'User saved!', 'success');
+    }
+    else{
+      console.log('error');
+    }    
+    return this.router.navigate(['/usersList']);
   }
 
 }

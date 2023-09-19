@@ -4,7 +4,7 @@
     <div class="row">
         
         <div class="col-md-12 pt-5">
-            <form [formGroup]="userUpdate" (ngSubmit)="buttonUpdate()">
+            <form [formGroup]="userFormUpdate" (ngSubmit)="buttonUpdate()">
                 <mat-card class="example-card">
                     <mat-card-header>
                     <mat-card-title >{{title | uppercase}}</mat-card-title>
@@ -17,7 +17,7 @@
                             <!-- Name -->
                             <mat-form-field class="example-full-width">
                                 <mat-label>Name</mat-label>
-                                <input matInput formControlName="name" readonly>   
+                                <input matInput formControlName="name" >   
                                                         
                             </mat-form-field>                                
                         </div>
@@ -25,7 +25,7 @@
                             <!-- Lastname -->
                             <mat-form-field class="example-full-width">
                                 <mat-label>Lastname</mat-label>
-                                <input type="text" matInput formControlName="lastname" readonly>                                
+                                <input type="text" matInput formControlName="lastname" >                                
                             </mat-form-field>                                
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                             <!-- Birthdate -->
                             <mat-form-field>
                                 <mat-label>Birthdate</mat-label>
-                                <input matInput [matDatepicker]="picker" formControlName="birthdate" readonly>
+                                <input matInput [matDatepicker]="picker" formControlName="birthdate" >
                                 <mat-hint>MM/DD/YYYY</mat-hint>
                                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                                 <mat-datepicker #picker></mat-datepicker>
@@ -66,7 +66,7 @@
                         mat-raised-button 
                         color="accent"
                         matTooltip="Save the user"
-                        [disabled]="!userUpdate.valid"
+                        [disabled]="!userFormUpdate.valid"
                         >{{button|uppercase}}</button>
                     </mat-card-actions>                              
 
