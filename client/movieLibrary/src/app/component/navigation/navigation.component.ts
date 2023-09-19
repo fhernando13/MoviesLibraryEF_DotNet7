@@ -11,23 +11,50 @@ import Swal from 'sweetalert2'
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss']
 })
-export class NavigationComponent  {
+export class NavigationComponent implements OnInit  {
   
-  isDarkThemeActive = false;
+  isDarkThemeActive = this.statusBotton(false);
   
   constructor(@Inject(DOCUMENT)private document: Document,
     private activedRouted: ActivatedRoute,
     private router: Router){
   }
 
- 
-  onChange(newValue: boolean){    
+ngOnInit(): void {
+   this.theme();
+ }
+
+statusBotton(themes: boolean){
+  // const themes = localStorage.getItem('dark');
+  if(localStorage.getItem('dark'))
+  {
+    return true
+  }
+  else{
+    return false
+  }
+ }
+
+ theme(){
+  const dato = localStorage.getItem('dark');
+  if(dato){
+    this.onChange(true);
+  }
+  else{
+    this.onChange(false);
+  }
+ }
+
+
+  onChange(newValue: boolean){ 
+    var dark = this.document.body.classList.add('darkMode');
     console.log(newValue);
     if(newValue){
-      this.document.body.classList.add('darkMode');      
+      localStorage.setItem('dark', JSON.stringify(dark));
     }
     else{
-     this.document.body.classList.remove('darkMode');     
+      localStorage.removeItem('dark');
+      this.document.body.classList.remove('darkMode');     
     }
   }
 

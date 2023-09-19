@@ -34,12 +34,13 @@
         <button mat-menu-item>
           <mat-icon>brightness_6</mat-icon>
           <span class="example-spacer"></span>
-        <mat-slide-toggle (ngModelChange)="onChange($event)" [(ngModel)]="isDarkThemeActive">Dark mode</mat-slide-toggle>
+        <mat-slide-toggle (ngModelChange)="onChange($event)" [ngModel]="isDarkThemeActive" >Dark mode</mat-slide-toggle>
         </button>
         <button mat-menu-item>
             <mat-icon>person</mat-icon>
             <span>Logout</span>
         </button>
       </mat-menu>
+      
         
 </mat-toolbar>
