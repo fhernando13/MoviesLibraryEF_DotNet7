@@ -70,8 +70,7 @@ get password2() {
 return this.userForm.get('password2');
 }
 
-  ngOnInit(): void{    
-    this.isUpdate();    
+  ngOnInit(): void{      
   }
 
   buttonSave(){    
@@ -83,6 +82,7 @@ return this.userForm.get('password2');
         error: (err) => console.log(err),
         });            
         Swal.fire('Good job!', 'User saved!', 'success');
+        this.router.navigate(['/usersList']);
       }
       else
       {
@@ -95,32 +95,8 @@ return this.userForm.get('password2');
     } else {
       console.log('error');
     }
-    return this.router.navigate(['/usersList']);
+    return "ok";
   }
 
-  isUpdate(){    
-    // if(this.iduser){
-    //   this.title = "Update user";
-    //   this.button = "Update";
-    //   const params = this.activedRouted.snapshot.params;
-    //   const data = this.userService.getUser(params['iduser'])
-    //     .subscribe(
-    //       {
-    //         next: data=>(this.userForm.setValue(            
-    //           {
-    //             name: data.name,
-    //             lastname: data.lastname,
-    //             birthdate: data.birthdate,
-    //             role: data.role,
-    //             email: data.email,
-    //             password: data.password,
-    //             password2: data.password
-    //           }
-    //         )),
-    //         error: err=>(console.log(err)),
-    //       }
-    //   )
-    // }
-  }
- 
+  
 }
