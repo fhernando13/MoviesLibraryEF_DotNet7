@@ -18,6 +18,7 @@ export class UserFormComponent implements OnInit {
   title = "Add information the user";
   button = "save";
   iduser: string|null;
+  showPass1 = false;
   
 
   createFormGroup() {
@@ -96,6 +97,24 @@ return this.userForm.get('password2');
       console.log('error');
     }
     return "ok";
+  }
+
+  changeType(){
+    let elemento :any = document.getElementById('pass1');
+    if(elemento.type == "password")
+      {elemento.type = "text"}
+    else{
+      elemento.type = "password"
+    }
+  }
+
+  changeType2(){
+    let elemento :any = document.getElementById('pass2');
+    if(elemento.type == "password")
+      {elemento.type = "text"}
+    else{
+      elemento.type = "password"
+    }
   }
 
   

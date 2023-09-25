@@ -20,7 +20,7 @@
             <!-- EMAIL -->
             <mat-form-field class="inputlogin">
               <mat-label><mat-icon> mail_outline</mat-icon> Enter your email</mat-label>
-              <input type="text" matInput formControlName="email">
+              <input type="text" matInput formControlName="email">              
               <mat-error *ngIf="email.hasError('required')">
                 Email is <strong>required</strong>                                         
               </mat-error>
@@ -28,7 +28,9 @@
             <!-- PASSWORD -->
             <mat-form-field class="inputlogin">
               <mat-label><mat-icon>lock</mat-icon> Enter your password</mat-label>
-              <input type="password" matInput formControlName="password"> 
+              <input type="password" matInput formControlName="password" id="pass1">
+              <mat-icon matSuffix color="primary"
+                (click)="changeType()">remove_red_eye</mat-icon> 
               <mat-error *ngIf="password.hasError('required')">
                 Password is <strong>required</strong> 
               </mat-error>             

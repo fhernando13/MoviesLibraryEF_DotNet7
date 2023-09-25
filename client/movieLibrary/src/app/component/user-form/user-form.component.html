@@ -93,8 +93,10 @@
                                 <!-- Password -->
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Password</mat-label>
-                                    <input type="password" matInput formControlName="password" placeholder="Add password">
-                                    <mat-icon matSuffix color="primary">lock</mat-icon>
+                                    <input type="password" matInput formControlName="password" placeholder="Add password" id="pass1">                                                                    
+                                    <mat-icon matSuffix color="primary"
+                                    (click)="changeType()"
+                                    >remove_red_eye</mat-icon>
                                     <!-- Validations -->                            
                                     <mat-error *ngIf="password.hasError('required')">
                                         Password is <strong>required</strong> 
@@ -109,8 +111,9 @@
                                 <!-- Password2 -->
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Confirm password</mat-label>
-                                    <input type="password" matInput formControlName="password2" placeholder="Add password">
-                                    <mat-icon matSuffix color="primary">lock</mat-icon>
+                                    <input type="password" matInput formControlName="password2" placeholder="Add password" id="pass2">
+                                    <mat-icon matSuffix color="primary"
+                                    (click)="changeType2()">remove_red_eye</mat-icon>
                                     <!-- Validations -->   
                                     <mat-error *ngIf="password2.hasError('required')">
                                         Password is <strong>required</strong> 
@@ -135,6 +138,7 @@
                 <!-- end card -->
                                                                              
             </form>
+            
             
         </div>
     </div>

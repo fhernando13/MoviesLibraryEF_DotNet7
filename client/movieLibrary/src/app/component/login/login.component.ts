@@ -59,5 +59,14 @@ export class LoginComponent implements OnInit {
     return this.router.navigate(['/usersList']);
   }
 
+  changeType(){
+    let elemento :any = document.getElementById('pass1');
+    if(elemento.type == "password")
+      {elemento.type = "text"}
+    else{
+      elemento.type = "password"
+    }
+  }
+
 }
 
