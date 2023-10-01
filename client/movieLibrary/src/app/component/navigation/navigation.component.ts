@@ -2,6 +2,8 @@ import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import { LoginService } from 'src/app/service/login/login.service';
+
 
 //Sweetalert
 import Swal from 'sweetalert2'
@@ -15,7 +17,9 @@ export class NavigationComponent implements OnInit  {
   
   isDarkThemeActive = this.statusBotton(false);
   
-  constructor(@Inject(DOCUMENT)private document: Document,
+  constructor(
+    @Inject(DOCUMENT)private document: Document,
+    private loginService: LoginService,
     private activedRouted: ActivatedRoute,
     private router: Router){
   }
@@ -64,6 +68,15 @@ statusBotton(themes: boolean){
 
   usersList(){
     this.router.navigate(['usersList'])
+  }
+
+
+  
+  logOut(){
+    localStorage.removeItem('dark');
+    this.onChange(false);
+    this.loginService.removeToken('token');
+    this.router.navigate(["/login"]);
   }
 
 }

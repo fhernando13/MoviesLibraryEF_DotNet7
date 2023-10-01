@@ -13,8 +13,24 @@ export class LoginService {
   constructor(private http: HttpClient) 
   { }
 
-  loginUser(login: Login){
-    return this.http.post(this.API_URI,login);
+  loginUser(Login: any){
+    return this.http.post<any>(this.API_URI, Login);
   }
   
+  storeToken(tokenValue: string|any){
+    localStorage.setItem('token', tokenValue);
+  }
+
+  getToken(){
+    return localStorage.getItem('token');
+  }
+
+  isLoggedIn(): boolean{
+    return !!localStorage.getItem('token');
+  }
+
+  removeToken(tokenValue: any){
+    return localStorage.removeItem(tokenValue);
+  }
+
 }

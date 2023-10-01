@@ -45,10 +45,14 @@ export class LoginComponent implements OnInit {
   }
 
   Login(){
-    if(this.loginForm)
-      console.log(this.loginForm);
+    if(this.loginForm.valid)
+      console.log(this.loginForm.value);
       this.loginService.loginUser(this.loginForm.value).subscribe({
-        next: res => this.loginForm.value = res,
+        next: (res) => {
+          console.log(res.message);
+          this.loginForm.value = res;          
+          this.loginService.storeToken(res.token);
+        },
         error: (err) => (Swal.fire({
           icon: 'error',
           title: 'Oops...',
