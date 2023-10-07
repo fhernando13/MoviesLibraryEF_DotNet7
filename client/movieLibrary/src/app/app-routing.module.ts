@@ -8,14 +8,17 @@ import { UserDetailComponent } from './component/user-detail/user-detail.compone
 import { UserUpdateComponent } from './component/user-update/user-update.component';
 import { LoginComponent } from './component/login/login.component';
 
+// Guards
+import { authGuard } from './guards/auth.guard';
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'usersForm', component: UserFormComponent },
-  { path: 'usersList', component: UserListComponent },
-  { path: 'usersDetails/:iduser', component: UserDetailComponent },
-  { path: 'usersUpdate/:iduser', component: UserUpdateComponent },
+  { path: 'usersForm', canActivate:[authGuard], component: UserFormComponent },
+  { path: 'usersList', canActivate:[authGuard], component: UserListComponent },
+  { path: 'usersDetails/:iduser', canActivate:[authGuard], component: UserDetailComponent },
+  { path: 'usersUpdate/:iduser', canActivate:[authGuard], component: UserUpdateComponent },
 ];
 
 @NgModule({
