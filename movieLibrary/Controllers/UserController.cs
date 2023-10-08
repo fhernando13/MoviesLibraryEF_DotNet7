@@ -11,7 +11,7 @@ namespace movieLibrary.Controllers
 {
     [ApiController]
     [Route("api/users")]
-    //[Authorize]
+    [Authorize]
     
     public class UserController: ControllerBase
     {

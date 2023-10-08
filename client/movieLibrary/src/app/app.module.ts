@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { UserService } from 'src/app/service/users/user.service';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -30,6 +30,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { UserDetailComponent } from './component/user-detail/user-detail.component';
 import { UserUpdateComponent } from './component/user-update/user-update.component';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 
 @NgModule({
@@ -67,7 +68,10 @@ import { UserUpdateComponent } from './component/user-update/user-update.compone
     MatPaginatorModule
   ],
   providers: [
-    UserService
+    UserService,
+    {provide:HTTP_INTERCEPTORS,
+    useClass:TokenInterceptor,
+    multi:true}
   ],
   bootstrap: [AppComponent]
 })

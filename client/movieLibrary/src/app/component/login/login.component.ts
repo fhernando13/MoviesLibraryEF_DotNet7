@@ -55,8 +55,8 @@ export class LoginComponent implements OnInit {
         },
         error: (err) => (Swal.fire({
           icon: 'error',
-          title: 'Oops...',
-          text: 'Something went wrong!'          
+          title: 'Try again',
+          text: 'User or password incorrect!'          
         }),
         this.router.navigate(["/login"]))   
       })    
