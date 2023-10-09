@@ -48,10 +48,15 @@ namespace movieLibrary.Controllers
             }
             else
             {
-                var keyBytes = Encoding.ASCII.GetBytes(secretKey);
-                var claims = new ClaimsIdentity();
+                
 
-                claims.AddClaim(new Claim(ClaimTypes.NameIdentifier, request.Email));
+                var keyBytes = Encoding.ASCII.GetBytes(secretKey);
+                var claims = new ClaimsIdentity(new Claim[]
+                {
+                    new Claim(ClaimTypes.Role, userAuthenticate.Role),
+                    new Claim(ClaimTypes.Name, $"{userAuthenticate.Nickname}")
+                });
+                
 
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {

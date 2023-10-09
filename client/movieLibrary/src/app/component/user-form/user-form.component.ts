@@ -27,6 +27,7 @@ export class UserFormComponent implements OnInit {
       lastname: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]),
       birthdate: new FormControl('', Validators.required),      
       role: new FormControl(this.selected, Validators.required),  
+      nickname: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.minLength(5)]),
       password: new FormControl('', [Validators.required]), 
       password2: new FormControl('', [Validators.required]),                                  
@@ -56,8 +57,12 @@ return this.userForm.get('birthadte');
 }
 
 get role() {
-  return this.userForm.get(this.selected);
-  }
+return this.userForm.get(this.selected);
+}
+
+get nickname() {
+return this.userForm.get('nickname');
+}
 
 get email() {
 return this.userForm.get('email');

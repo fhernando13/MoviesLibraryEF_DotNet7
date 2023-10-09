@@ -6,6 +6,7 @@ export interface User {
     email: string;
     password?: string;
     role?: string; 
+    nickname: string; 
     refreshToken?: string;
     refreshTokenExpireTime?: string;
     token?: string;

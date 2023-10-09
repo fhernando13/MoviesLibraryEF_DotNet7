@@ -21,6 +21,7 @@ export class UserDetailComponent implements OnInit{
       name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
       lastname: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]),
       birthdate: new FormControl('', Validators.required),      
+      nickname: new FormControl('', Validators.required),   
       role: new FormControl(this.selected, Validators.required),  
       email: new FormControl('', [Validators.required, Validators.minLength(5)]),                                  
     });  
@@ -32,6 +33,7 @@ export class UserDetailComponent implements OnInit{
     lastname: '',
     birthdate: '',
     role: '',
+    nickname: '',
     email: '',
     password: ''    
   };
@@ -56,8 +58,12 @@ get name() {
   }
   
   get role() {
-    return this.userDetail.get(this.selected);
-    }
+  return this.userDetail.get(this.selected);
+  }
+  
+  get nickname() {
+  return this.userDetail.get('nickname');
+  }
   
   get email() {
   return this.userDetail.get('email');

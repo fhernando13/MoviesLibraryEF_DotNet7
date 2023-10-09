@@ -3,6 +3,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { LoginService } from 'src/app/service/login/login.service';
+import { UserAppService } from 'src/app/service/user-app/user-app.service';
 
 
 //Sweetalert
@@ -16,16 +17,18 @@ import Swal from 'sweetalert2'
 export class NavigationComponent implements OnInit  {
   
   isDarkThemeActive = this.statusBotton(false);
-  
+  public unique_name : string = "";
+
   constructor(
     @Inject(DOCUMENT)private document: Document,
     private loginService: LoginService,
-    private activedRouted: ActivatedRoute,
+    private userApp: UserAppService,
     private router: Router){
   }
 
-ngOnInit(): void {
+ngOnInit() {
    this.theme();
+   this.getNickname();
  }
 
 statusBotton(themes: boolean){
@@ -70,13 +73,19 @@ statusBotton(themes: boolean){
     this.router.navigate(['usersList'])
   }
 
-
-  
   logOut(){
     localStorage.removeItem('dark');
     this.onChange(false);
     this.loginService.removeToken('token');
     this.router.navigate(["/login"]);
+  }
+
+  getNickname(){
+    this.userApp.getNicknameFromApi()
+    .subscribe(val=>{
+      const fullNameFromToken = this.loginService.getNicknameFromToken();
+      this.unique_name = val || fullNameFromToken
+    })
   }
 
 }

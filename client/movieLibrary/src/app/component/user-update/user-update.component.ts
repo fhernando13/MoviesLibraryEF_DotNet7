@@ -24,6 +24,7 @@ export class UserUpdateComponent implements OnInit{
       name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
       lastname: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]),
       birthdate: new FormControl('', Validators.required),      
+      nickname: new FormControl('', Validators.required),   
       role: new FormControl(this.selected, Validators.required),  
       email: new FormControl('', [Validators.required, Validators.minLength(5)]),                                  
     });  
@@ -34,6 +35,7 @@ export class UserUpdateComponent implements OnInit{
     name: '',
     lastname: '',
     birthdate: '',
+    nickname:  '',
     role: '',
     email: ''   
   };
@@ -56,7 +58,11 @@ get lastname() {
 get birthdate() {
   return this.userFormUpdate.get('birthadte');
 }
-  
+
+get nickname() {
+  return this.userFormUpdate.get('nickname');
+}
+
 get role() {
   return this.userFormUpdate.get(this.selected);
 }

@@ -31,10 +31,25 @@
                             </div>
 
                             <div class="col-md-4">                        
-                                <!-- Name -->
+                                <!-- Lastname -->
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Lastame</mat-label>
                                     <input type="text" matInput formControlName="lastname" placeholder="Add lastname">
+                                    <!-- Validation -->
+                                    <!-- <mat-error *ngIf="name.hasError('required')">
+                                        Name is <strong>required</strong>                                         
+                                    </mat-error> 
+                                    <mat-error *ngIf="name.hasError('minlength')">
+                                        Name must be at least <strong>3 characters</strong> long.
+                                    </mat-error>                                                                        -->
+                                </mat-form-field>                                
+                            </div>
+
+                            <div class="col-md-4">                        
+                                <!-- Nickname -->
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Nickname</mat-label>
+                                    <input type="text" matInput formControlName="nickname" placeholder="Add lastname">
                                     <!-- Validation -->
                                     <!-- <mat-error *ngIf="name.hasError('required')">
                                         Name is <strong>required</strong>                                         
