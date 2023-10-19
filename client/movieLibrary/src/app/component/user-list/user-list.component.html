@@ -2,35 +2,52 @@
 
 <div class="container">
     <div class="row">
-        <div class="div" id="xls">
-            <button mat-raised-button color="primary" matTooltip="Add new user" routerLink="/usersForm"><mat-icon>person_add</mat-icon> Add user</button>            
-        </div>
-        <div class="col-12">
+        <div class="row" id="xls">
+            <div class="col-md-10">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Search</mat-label>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Search some register" #input>
+                  </mat-form-field>
+            </div>
+            <div class="col-md-2" >
+                <button class="example-full-width" mat-raised-button color="primary" matTooltip="Add new user" routerLink="/usersForm"><mat-icon>person_add</mat-icon> Add user</button> 
+            </div>
+        </div>        
+
+        <div class="col-sm-12 ">
             <mat-card class="example-card">
                 <mat-card-header>
                     <mat-card-title>{{title|uppercase}}</mat-card-title>
+                    <mat-divider></mat-divider>
                 </mat-card-header>
+                <div class="col-sm-6 col-md-12 ">
                     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                        
                         <ng-container matColumnDef="ID">
                             <th mat-header-cell *matHeaderCellDef> Id </th>
                             <td mat-cell *matCellDef="let row"> {{row.iduser}} </td>
                         </ng-container>
+
                         <ng-container matColumnDef="Name">
                           <th mat-header-cell *matHeaderCellDef> Name </th>
                           <td mat-cell *matCellDef="let row"> {{row.name}} </td>
                         </ng-container>
+
                         <ng-container matColumnDef="Lastname">
                           <th mat-header-cell *matHeaderCellDef> Lastname </th>
                           <td mat-cell *matCellDef="let row"> {{row.lastname}} </td>
                         </ng-container>
+
                         <ng-container matColumnDef="Email">
                           <th mat-header-cell *matHeaderCellDef> Email </th>
                           <td mat-cell *matCellDef="let row"> {{row.email}} </td>
                         </ng-container>
+
                         <ng-container matColumnDef="Role">
                             <th mat-header-cell *matHeaderCellDef> Role</th>
                             <td mat-cell *matCellDef="let row"> {{row.role}} </td>
                         </ng-container>
+                        
                         <ng-container matColumnDef="Options">
                             <th mat-header-cell *matHeaderCellDef>Options</th>
                             <td mat-cell *matCellDef="let row">
@@ -61,11 +78,12 @@
                                 ><mat-icon>delete</mat-icon>
                                 </button>                                
                             </td>
+                            
                         </ng-container>
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                     </table>
-
+                </div>
                     <mat-paginator [pageSizeOptions]="[5, 10]"
                                    showFirstLastButtons
                                    aria-label="Select page of periodic elements">

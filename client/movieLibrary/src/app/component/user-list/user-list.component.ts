@@ -17,6 +17,7 @@ import Swal from 'sweetalert2'
 export class UserListComponent implements OnInit {
 
   users: any = [];
+  
 
   title="list user"
   displayedColumns = ['ID','Name', 'Lastname', 'Email', 'Role','Options'];
@@ -70,6 +71,13 @@ export class UserListComponent implements OnInit {
       }
     })
   }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  
 
   
 }

@@ -31,6 +31,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { UserDetailComponent } from './component/user-detail/user-detail.component';
 import { UserUpdateComponent } from './component/user-update/user-update.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { MatDividerModule } from '@angular/material/divider';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     MatNativeDateModule,
     MatSelectModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDividerModule
   ],
   providers: [
     UserService,

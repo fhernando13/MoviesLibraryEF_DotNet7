@@ -65,7 +65,7 @@
                         <div class="row">  
                             <div class="col-md-4">
                                 <!-- Birthdate -->
-                                <mat-form-field>
+                                <mat-form-field class="example-full-width">
                                     <mat-label>Choose a birthdate</mat-label>
                                     <input matInput [matDatepicker]="picker" formControlName="birthdate">
                                     <mat-hint>MM/DD/YYYY</mat-hint>
@@ -91,7 +91,7 @@
 
                             <div class="col-md-3">
                                 <!-- Role -->
-                                <mat-form-field>
+                                <mat-form-field class="example-full-width">
                                     <mat-label>Choice a role</mat-label>
                                     <mat-select [(value)]="selected" formControlName="role">                                      
                                       <mat-option value="Employee">Employee</mat-option>

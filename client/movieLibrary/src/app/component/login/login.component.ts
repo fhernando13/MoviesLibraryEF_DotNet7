@@ -46,27 +46,33 @@ export class LoginComponent implements OnInit {
 
   Login(){
     if(this.loginForm.valid)
-      console.log(this.loginForm.value);
+    {
       this.loginService.loginUser(this.loginForm.value).subscribe({
         next: (res) => {
-          console.log(res.message);
           this.loginForm.value = res;          
           this.loginService.storeToken(res.token);
+          const login = this.router.navigate(['/usersList']);
         },
-        error: (err) => (Swal.fire({
-          icon: 'error',
-          title: 'Try again',
-          text: 'User or password incorrect!'          
-        }),
-        this.router.navigate(["/login"]))   
-      })    
-    return this.router.navigate(['/usersList']);
+        error: (err) => (
+          console.log(err)
+          )   
+      }) 
+    }
+    else{
+      Swal.fire({
+        icon: 'error',
+        title: 'Try again',
+        text: 'User or password incorrect!'          
+      })
+    }   
+    return this.Login;
   }
 
   changeType(){
     let elemento :any = document.getElementById('pass1');
     if(elemento.type == "password")
       {elemento.type = "text"}
+      
     else{
       elemento.type = "password"
     }

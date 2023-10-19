@@ -26,13 +26,12 @@ export class NavigationComponent implements OnInit  {
     private router: Router){
   }
 
-ngOnInit() {
+ngOnInit(){
    this.theme();
    this.getNickname();
  }
 
 statusBotton(themes: boolean){
-  // const themes = localStorage.getItem('dark');
   if(localStorage.getItem('dark'))
   {
     return true
@@ -55,7 +54,6 @@ statusBotton(themes: boolean){
 
   onChange(newValue: boolean){ 
     var dark = this.document.body.classList.add('darkMode');
-    console.log(newValue);
     if(newValue){
       localStorage.setItem('dark', JSON.stringify(dark));
     }
@@ -73,11 +71,17 @@ statusBotton(themes: boolean){
     this.router.navigate(['usersList'])
   }
 
-  logOut(){
-    localStorage.removeItem('dark');
-    this.onChange(false);
-    this.loginService.removeToken('token');
-    this.router.navigate(["/login"]);
+  logOut(): void{    
+    try{
+      localStorage.removeItem('dark');
+      this.onChange(false);
+      this.loginService.removeToken('token');
+      localStorage.clear();
+      this.router.navigate(["/login"]);
+    }
+    catch(error){
+      console.log(error);
+    }
   }
 
   getNickname(){
