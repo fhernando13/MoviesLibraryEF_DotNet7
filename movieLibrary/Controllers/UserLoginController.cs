@@ -26,9 +26,6 @@ namespace movieLibrary.Controllers
             this.mapper = mapper;
         }
         
-        
-
-
         //Login
 
         [HttpPost("login")]
@@ -49,7 +46,6 @@ namespace movieLibrary.Controllers
             else
             {
                 
-
                 var keyBytes = Encoding.ASCII.GetBytes(secretKey);
                 var claims = new ClaimsIdentity(new Claim[]
                 {

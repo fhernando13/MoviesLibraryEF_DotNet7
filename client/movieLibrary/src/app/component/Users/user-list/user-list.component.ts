@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { UserService } from '../../service/users/user.service';
+import { UserService } from '../../../service/users/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 // Angular Material

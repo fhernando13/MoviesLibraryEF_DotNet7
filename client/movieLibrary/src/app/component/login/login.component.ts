@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/service/login/login.service';
+import { UserAppService } from 'src/app/service/user-app/user-app.service';
 
 //Sweetalert
 import Swal from 'sweetalert2'
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit {
   
   title = "Add information the user";
   button = "save";
+  viewPass = '';
 
   createFormGroup() {
     return new FormGroup({      
@@ -27,8 +29,10 @@ export class LoginComponent implements OnInit {
   }
 
   loginForm: FormGroup | any;
+  passWD = 'visibility';
 
   constructor(private loginService: LoginService,
+              private userApp: UserAppService,
               private router: Router)
     {
       this.loginForm = this.createFormGroup();
@@ -51,6 +55,9 @@ export class LoginComponent implements OnInit {
         next: (res) => {
           this.loginForm.value = res;          
           this.loginService.storeToken(res.token);
+          const tokenPayLoad = this.loginService.decodedToken()
+          this.userApp.setNicknameFromApi(tokenPayLoad.unique_name);
+          this.userApp.setRoleFromApi(tokenPayLoad.role);
           const login = this.router.navigate(['/usersList']);
         },
         error: (err) => (
@@ -69,12 +76,16 @@ export class LoginComponent implements OnInit {
   }
 
   changeType(){
-    let elemento :any = document.getElementById('pass1');
-    if(elemento.type == "password")
-      {elemento.type = "text"}
-      
+    let showPassword :any = document.getElementById('pass1');
+    if(showPassword.type == "password")
+      {showPassword.type = "text";
+      this.passWD = 'visibility_off';
+      this.viewPass = 'hide the password';
+    }            
     else{
-      elemento.type = "password"
+      showPassword.type = "password";
+      this.passWD = 'visibility';
+      this.viewPass = 'show the password';
     }
   }
 

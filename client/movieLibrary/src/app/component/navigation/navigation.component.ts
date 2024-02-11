@@ -1,7 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import { Router } from '@angular/router';
 import { LoginService } from 'src/app/service/login/login.service';
 import { UserAppService } from 'src/app/service/user-app/user-app.service';
 
@@ -18,6 +17,11 @@ export class NavigationComponent implements OnInit  {
   
   isDarkThemeActive = this.statusBotton(false);
   public unique_name : string = "";
+  public role : string = "";
+  icon = '';
+  themes = '';
+  click = true;
+  mode = ''
 
   constructor(
     @Inject(DOCUMENT)private document: Document,
@@ -29,6 +33,7 @@ export class NavigationComponent implements OnInit  {
 ngOnInit(){
    this.theme();
    this.getNickname();
+   this.getRole();
  }
 
 statusBotton(themes: boolean){
@@ -56,19 +61,36 @@ statusBotton(themes: boolean){
     var dark = this.document.body.classList.add('darkMode');
     if(newValue){
       localStorage.setItem('dark', JSON.stringify(dark));
+      this.icon = 'brightness_2';
+      this.mode = 'ON'
     }
     else{
       localStorage.removeItem('dark');
-      this.document.body.classList.remove('darkMode');     
+      this.document.body.classList.remove('darkMode');   
+      this.icon = 'brightness_5';
+      this.mode = 'OFF';
     }
   }
 
+  
   usersForm(){
     this.router.navigate(['usersForm'])
   }
 
   usersList(){
     this.router.navigate(['usersList'])
+  }
+
+  actorForm(){
+    this.router.navigate(['actors'])
+  }
+
+  genderForm(){
+    this.router.navigate(['genders'])
+  }
+
+  moviesForm(){
+    this.router.navigate(['movies'])
   }
 
   logOut(): void{    
@@ -88,8 +110,20 @@ statusBotton(themes: boolean){
     this.userApp.getNicknameFromApi()
     .subscribe(val=>{
       const fullNameFromToken = this.loginService.getNicknameFromToken();
-      this.unique_name = val || fullNameFromToken
+      this.unique_name = val || fullNameFromToken;
+      console.log(this.unique_name)
     })
   }
+
+  getRole(){
+    this.userApp.getRoleFromApi()
+    .subscribe(val2=>{
+      const fullRolFromToken = this.loginService.getRoleFromToken()
+      this.role = val2 || fullRolFromToken;
+      console.log(this.role)
+    })
+  }
+
+ 
 
 }

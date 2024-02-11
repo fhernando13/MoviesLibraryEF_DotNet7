@@ -7,10 +7,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './component/login/login.component';
 import { NavigationComponent } from './component/navigation/navigation.component';
-import { UserFormComponent } from './component/user-form/user-form.component';
-import { UserListComponent } from './component/user-list/user-list.component';
+import { UserFormComponent } from './component/Users/user-form/user-form.component';
+import { UserListComponent } from './component/Users/user-list/user-list.component';
+import { UserDetailComponent } from './component/Users/user-detail/user-detail.component';
+import { UserUpdateComponent } from './component/Users/user-update/user-update.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MoviesComponent } from './component/Movies/movies/movies.component';
+import { ActorsComponent } from './component/Actors/actors/actors.component'; 
+import { GendersComponent } from './component/Genders/genders/genders.component';
 
 // Angular Material
 import { MatCardModule } from '@angular/material/card';
@@ -28,10 +33,10 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { UserDetailComponent } from './component/user-detail/user-detail.component';
-import { UserUpdateComponent } from './component/user-update/user-update.component';
+
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { MatDividerModule } from '@angular/material/divider';
+
 
 
 @NgModule({
@@ -39,10 +44,13 @@ import { MatDividerModule } from '@angular/material/divider';
     AppComponent,
     LoginComponent,
     UserFormComponent,
-    UserListComponent,
     NavigationComponent,
     UserDetailComponent,
-    UserUpdateComponent
+    UserUpdateComponent,
+    UserListComponent,
+    MoviesComponent,
+    ActorsComponent,
+    GendersComponent
   ],
   imports: [
     BrowserModule,
